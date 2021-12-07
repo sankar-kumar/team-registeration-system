@@ -75,10 +75,10 @@ public class TeamInfoService implements ITeamInfoService {
 			logger.info("Request from UI: " + mapper.writeValueAsString(uiRequest));
 			List<TeamDetails> dbTeamInfo = null;
 			if (uiRequest != null && uiRequest.getTeamNo() != null && !(uiRequest.getTeamNo().trim().isEmpty())) {
-				this.findTeamByNo(uiRequest.getTeamNo());
+				dbTeamInfo = this.findTeamByNo(uiRequest.getTeamNo());
 			} else if (uiRequest != null && uiRequest.getTeamName() != null
 					&& !(uiRequest.getTeamName().trim().isEmpty())) {
-				this.findTeamByName(uiRequest.getTeamNo());
+				dbTeamInfo = this.findTeamByName(uiRequest.getTeamName());
 			} else {
 				dbTeamInfo = teamRepository.findAll(Sort.by(Sort.Order.desc("createdDate")));
 			}
@@ -95,7 +95,8 @@ public class TeamInfoService implements ITeamInfoService {
 		return response;
 	}
 
-	private List<TeamDetails> findTeamByName(String teamNo) {
+	private List<TeamDetails> findTeamByNo(String teamNo) {
+		logger.info("Inside findTeamByName");
 		Criteria noCriteria = Criteria.where("teamNo").is(teamNo);
 		Sort sort = Sort.by(Sort.Order.desc("createdDate"));
 		Query query = Query.query(noCriteria).with(sort);
@@ -104,8 +105,11 @@ public class TeamInfoService implements ITeamInfoService {
 		return collectionFromDb;
 	}
 
-	private List<TeamDetails> findTeamByNo(String teamName) {
+	private List<TeamDetails> findTeamByName(String teamName) {
 
+		logger.info("Inside findTeamByNo");
+
+		// Here we are querying all the similar items in mongodb based on their name.
 		Criteria nameCriteria = Criteria.where("teamName").regex(teamName, "i");
 		Sort sort = Sort.by(Sort.Order.desc("createdDate"));
 		Query query = Query.query(nameCriteria).with(sort);
