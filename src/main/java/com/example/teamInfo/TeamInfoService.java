@@ -29,6 +29,9 @@ public class TeamInfoService implements ITeamInfoService {
 	@Autowired
 	private MongoOperations mongoOperation;
 
+	/**
+	 * saveTeamInfo.
+	 */
 	public TeamDetails saveTeamInfo(TeamDetails uiTeamReq) {
 
 		logger.info("Inside saveTeamInfo");
@@ -53,6 +56,9 @@ public class TeamInfoService implements ITeamInfoService {
 
 	}
 
+	/**
+	 * getTeamInfo.
+	 */
 	public TeamDetails getTeamInfo(TeamDetails dbTeamDetails) {
 		logger.info("Inside getTeamInfo");
 		TeamDetails uiTeamRes = new TeamDetails();
@@ -68,6 +74,9 @@ public class TeamInfoService implements ITeamInfoService {
 		return uiTeamRes;
 	}
 
+	/**
+	 * getAllTeams.
+	 */
 	public List<TeamDetails> getAllTeams(TeamDetails uiRequest) {
 		List<TeamDetails> response = new ArrayList<TeamDetails>();
 		try {
@@ -95,6 +104,10 @@ public class TeamInfoService implements ITeamInfoService {
 		return response;
 	}
 
+	/**
+	 * @param teamNo.
+	 * @return
+	 */
 	private List<TeamDetails> findTeamByNo(String teamNo) {
 		logger.info("Inside findTeamByName");
 		Criteria noCriteria = Criteria.where("teamNo").is(teamNo);
@@ -105,6 +118,10 @@ public class TeamInfoService implements ITeamInfoService {
 		return collectionFromDb;
 	}
 
+	/**
+	 * @param teamName
+	 * @return
+	 */
 	private List<TeamDetails> findTeamByName(String teamName) {
 
 		logger.info("Inside findTeamByNo");
