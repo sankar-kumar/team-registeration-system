@@ -6,6 +6,6 @@ This Application will run on port: 8082
 
 Using this application we can register Teams like cricket, Football, etc.. games.
 
-#Access Swagger
+# Access-Swagger
 http://localhost:8082/swagger-ui.html
 http://localhost:8082/v2/api-docs
