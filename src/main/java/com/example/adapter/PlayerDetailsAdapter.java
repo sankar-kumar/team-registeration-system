@@ -22,21 +22,23 @@ public class PlayerDetailsAdapter {
 		List<PlayerDetails> dbPlayersList = new ArrayList<>();
 
 //		PlayerDetails-->Input we are Iterating here
-		for (PlayerDetails player : uiPlayerList) {
+		if (uiPlayerList.size() > 0) {
+			for (PlayerDetails player : uiPlayerList) {
 //			here we are creating one more object for Database model.
 //			and adding the iterated values to previously created dataBase list in 12.
-			PlayerDetails dbPlayer = new PlayerDetails();
-			dbPlayer.setFirstName(player.getFirstName());
-			dbPlayer.setLastName(player.getLastName());
-			dbPlayer.setDateOfBirth(player.getDateOfBirth());
-			dbPlayer.setAge(player.getAge());
-			dbPlayer.setDateOfBirth(player.getDateOfBirth());
-			dbPlayer.setMobileNumber(player.getMobileNumber());
-			dbPlayer.setBloodGroup(player.getBloodGroup());
-			if (player.getAddress() != null) {
-				dbPlayer.setAddress(AddressAdapter.saveAddress(player.getAddress()));
+				PlayerDetails dbPlayer = new PlayerDetails();
+				dbPlayer.setFirstName(player.getFirstName());
+				dbPlayer.setLastName(player.getLastName());
+				dbPlayer.setDateOfBirth(player.getDateOfBirth());
+				dbPlayer.setAge(player.getAge());
+				dbPlayer.setDateOfBirth(player.getDateOfBirth());
+				dbPlayer.setMobileNumber(player.getMobileNumber());
+				dbPlayer.setBloodGroup(player.getBloodGroup());
+				if (player.getAddress() != null) {
+					dbPlayer.setAddress(AddressAdapter.saveAddress(player.getAddress()));
+				}
+				dbPlayersList.add(dbPlayer);
 			}
-			dbPlayersList.add(dbPlayer);
 		}
 		return dbPlayersList;
 	}

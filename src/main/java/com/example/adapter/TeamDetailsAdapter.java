@@ -1,5 +1,7 @@
 package com.example.adapter;
 
+import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +23,7 @@ public class TeamDetailsAdapter {
 		dbTeamDetail.setFromDate(uiTeamDetails.getFromDate());
 		dbTeamDetail.setTeamName(uiTeamDetails.getTeamName());
 		dbTeamDetail.setTeamNo(uiTeamDetails.getTeamNo());
-		dbTeamDetail.setCreatedDate(uiTeamDetails.getCreatedDate());
+		dbTeamDetail.setCreatedDate(LocalDateTime.now().toString());
 		if (uiTeamDetails.getOwnerDetails() != null) {
 			dbTeamDetail.setOwnerDetails(OwnerDetailsAdapter.saveOwnerDetails(uiTeamDetails.getOwnerDetails()));
 		}

@@ -22,7 +22,6 @@ public class AddressAdapter {
 		dbAddress.setState(uiAddress.getState());
 		dbAddress.setCity(uiAddress.getCity());
 		dbAddress.setZipcode(uiAddress.getZipcode());
-		;
 
 		return dbAddress;
 	}
@@ -40,7 +39,6 @@ public class AddressAdapter {
 		uiAddress.setState(dbAddress.getState());
 		uiAddress.setCity(dbAddress.getCity());
 		uiAddress.setZipcode(dbAddress.getZipcode());
-		;
 
 		return uiAddress;
 	}
